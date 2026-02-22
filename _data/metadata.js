@@ -3,7 +3,7 @@
 export default {
   title: "Hello Friend",
   subtitle: "A simple theme for Eleventy",
-  url: "https://example.com",
+  url: "https://hello.000000076.xyz",
   language: "en",
   locale: "en_US",
   description: "Hello Friend theme ported to Eleventy 3.1.2 with ESM, Nunjucks, Luxon, and Pagefind.",
