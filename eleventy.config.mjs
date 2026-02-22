@@ -1,6 +1,7 @@
 import { DateTime } from "luxon";
 import pluginRss from "@11ty/eleventy-plugin-rss";
 import { mkdirSync } from "node:fs";
+import yaml from "js-yaml";
 
 function ensureOutputDirs() {
   const dirs = [
@@ -24,6 +25,8 @@ export default function (eleventyConfig) {
   eleventyConfig.on("beforeWatch", ensureOutputDirs);
 
   eleventyConfig.addPlugin(pluginRss);
+  eleventyConfig.addDataExtension("yml", (contents) => yaml.load(contents));
+  eleventyConfig.addDataExtension("yaml", (contents) => yaml.load(contents));
 
   eleventyConfig.addPassthroughCopy({ "assets/fonts": "assets/fonts" });
   eleventyConfig.addPassthroughCopy({ "assets/js": "assets/js" });
