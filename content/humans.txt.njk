@@ -1,0 +1,27 @@
+---
+permalink: /humans.txt
+layout: null
+---
+/* TEAM */
+Site: {{ metadata.title }}
+URL: {{ metadata.url }}
+Generated: {{ humans.generatedAt }}
+
+/* AUTHORS */
+{% for person in humans.authors %}
+{{ person }}
+{% endfor %}
+
+/* CO-AUTHORS */
+{% if humans.coauthors.length %}
+{% for person in humans.coauthors %}
+{{ person }}
+{% endfor %}
+{% else %}
+None listed in git trailers.
+{% endif %}
+
+/* CONTRIBUTORS */
+{% for person in humans.contributors %}
+{{ person }}
+{% endfor %}

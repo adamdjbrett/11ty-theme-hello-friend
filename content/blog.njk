@@ -1,0 +1,42 @@
+---
+layout: layouts/base.njk
+title: Blog
+description: Blog posts from Hello Friend.
+pagination:
+  data: collections.postsDesc
+  size: 5
+  alias: posts
+permalink: "{% if pagination.pageNumber == 0 %}/blog/{% else %}/blog/page/{{ pagination.pageNumber + 1 }}/{% endif %}"
+---
+<div class="posts h-feed">
+  {% for post in posts %}
+    <article class="post on-list h-entry">
+      <h1 class="post-title p-name"><a class="u-url" href="{{ post.url }}">{{ post.data.title }}</a></h1>
+      <div class="post-meta">
+        <time class="post-date dt-published" datetime="{{ post.date | htmlDateString }}">{{ post.date | dateReadable(metadata.dateFormatList or "yyyy-LL-dd") }}</time>
+        {% if post.data.author %}<span class="post-author">&mdash; {{ metadata.writtenBy }} {{ post.data.author }}</span>{% endif %}
+        {% if metadata.showReadingTime %}<span class="post-read-time">&mdash; {{ post.templateContent | readingTime }} {{ metadata.minuteReadingTime }}</span>{% endif %}
+      </div>
+
+      {% if post.data.tags %}
+      <span class="post-tags">
+        {% for tag in post.data.tags %}<a href="/tags/{{ tag | slug }}/">#{{ tag }}</a>{% if not loop.last %}&nbsp;{% endif %}{% endfor %}
+      </span>
+      {% endif %}
+
+      {% if post.data.cover %}
+      <figure class="post-cover"><img src="{{ post.data.cover }}" alt="{{ post.data.coverAlt or post.data.title }}" loading="lazy" decoding="async" /></figure>
+      {% endif %}
+
+      <div class="post-content e-content">
+        <p>{{ post.data.description or "Read the full post." }}</p>
+      </div>
+
+      <div>
+        <a class="read-more button" href="{{ post.url }}">{{ metadata.readMore or "Read more" }} &rarr;</a>
+      </div>
+    </article>
+  {% endfor %}
+
+  {% include "partials/pagination.njk" %}
+</div>

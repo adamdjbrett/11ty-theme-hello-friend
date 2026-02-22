@@ -1,0 +1,8 @@
+{% if cover %}
+<figure class="post-cover">
+  <img src="{{ cover }}" alt="{{ coverAlt or title }}" loading="lazy" decoding="async" />
+  {% if coverCaption %}
+    <figcaption class="center">{{ coverCaption | safe }}</figcaption>
+  {% endif %}
+</figure>
+{% endif %}

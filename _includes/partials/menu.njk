@@ -1,0 +1,36 @@
+{% set items = metadata.navigation or [] %}
+{% set showMenuItems = metadata.showMenuItems if metadata.showMenuItems is defined else items.length %}
+
+<nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    {% if showMenuItems or showMenuItems == 0 %}
+      {% for item in items.slice(0, showMenuItems) %}
+        <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+      {% endfor %}
+
+      {% if items.length > showMenuItems %}
+        <ul class="menu__sub-inner">
+          <li class="menu__sub-inner-more-trigger">
+            {{ metadata.menuMore or 'Show more' }}
+            <span class="menu__sub-inner-more-trigger-icon">{% include "partials/greater-icon.njk" %}</span>
+          </li>
+          <ul class="menu__sub-inner-more hidden">
+            {% for item in items.slice(showMenuItems) %}
+              <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </ul>
+      {% endif %}
+    {% else %}
+      {% for item in items %}
+        <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+      {% endfor %}
+    {% endif %}
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    {% for item in items %}
+      <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+    {% endfor %}
+  </ul>
+</nav>

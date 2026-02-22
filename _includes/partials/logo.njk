@@ -1,0 +1,13 @@
+<a
+  href="{{ metadata.logo.logoHomeLink or '/' }}"
+  class="logo"
+  style="text-decoration: none;"
+>
+  {% if metadata.logo.path %}
+    <img src="{{ metadata.logo.path }}" alt="{{ metadata.logo.alt }}" />
+  {% else %}
+    <span class="logo__mark">{% include "partials/greater-icon.njk" %}</span>
+    <span class="logo__text">{{ metadata.logo.logoText or 'hello friend' }}</span>
+    <span class="logo__cursor"></span>
+  {% endif %}
+</a>

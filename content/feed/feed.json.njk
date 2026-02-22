@@ -1,0 +1,23 @@
+---
+permalink: /feed/feed.json
+layout: null
+eleventyExcludeFromCollections: true
+---
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "{{ metadata.title | escape }}",
+  "home_page_url": "{{ metadata.url | escape }}",
+  "feed_url": "{{ metadata.url | escape }}/feed/feed.json",
+  "description": "{{ metadata.description | escape }}",
+  "items": [
+    {% for post in collections.postsDesc %}
+    {
+      "id": "{{ post.url | absoluteUrl(metadata.url) }}",
+      "url": "{{ post.url | absoluteUrl(metadata.url) }}",
+      "title": "{{ post.data.title | escape }}",
+      "content_text": "{{ (post.data.description or post.data.title) | escape }}",
+      "date_published": "{{ post.date | dateISO }}"
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}

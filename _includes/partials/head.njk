@@ -1,0 +1,29 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="dark light" />
+<meta name="description" content="{{ description or metadata.description }}" />
+<meta name="robots" content="index,follow" />
+<link rel="canonical" href="{{ (page.url or '/') | absoluteUrl(metadata.url) }}" />
+<link rel="stylesheet" href="/style.css" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png" />
+<link rel="icon" href="/img/favicon.png" />
+<link rel="preload" href="/assets/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/fonts/Inter-Bold.woff2" as="font" type="font/woff2" crossorigin />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="{{ title or metadata.title }}" />
+<meta property="og:description" content="{{ description or metadata.description }}" />
+<meta property="og:url" content="{{ (page.url or '/') | absoluteUrl(metadata.url) }}" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ title or metadata.title }}" />
+<meta name="twitter:description" content="{{ description or metadata.description }}" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ metadata.title | escape }}",
+  "url": "{{ metadata.url | escape }}",
+  "description": "{{ metadata.description | escape }}"
+}
+</script>

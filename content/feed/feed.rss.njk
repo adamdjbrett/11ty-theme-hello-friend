@@ -1,0 +1,22 @@
+---
+permalink: /feed/feed.rss
+layout: null
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>{{ metadata.title }}</title>
+    <link>{{ metadata.url }}</link>
+    <description>{{ metadata.description }}</description>
+    {% for post in collections.postsDesc %}
+    <item>
+      <title>{{ post.data.title }}</title>
+      <link>{{ post.url | absoluteUrl(metadata.url) }}</link>
+      <guid>{{ post.url | absoluteUrl(metadata.url) }}</guid>
+      <pubDate>{{ post.date | dateRfc2822 }}</pubDate>
+      <description>{{ post.data.description or post.data.title }}</description>
+    </item>
+    {% endfor %}
+  </channel>
+</rss>

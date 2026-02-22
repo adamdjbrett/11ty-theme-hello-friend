@@ -1,0 +1,12 @@
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+<article class="post h-entry">
+  <h1 class="post-title p-name">{{ title }}</h1>
+  {% include "partials/postmeta.njk" %}
+  {% include "partials/postcover.njk" %}
+  <div class="post-content e-content">
+    {{ content | safe }}
+  </div>
+</article>
+{% endblock %}

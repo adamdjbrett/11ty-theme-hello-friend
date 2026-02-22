@@ -1,0 +1,7 @@
+<div class="post-meta">
+  <time class="post-date" datetime="{{ page.date | htmlDateString }}">{{ page.date | dateReadable(metadata.dateFormatSingle or "yyyy-LL-dd") }}</time>
+  {% if author %}<span class="post-author">&mdash; {{ metadata.writtenBy or "Written by" }} {{ author }}</span>{% endif %}
+  {% if metadata.showReadingTime %}
+    <span class="post-read-time">&mdash; {{ content | readingTime }} {{ metadata.minuteReadingTime or "min read" }}</span>
+  {% endif %}
+</div>

@@ -1,0 +1,17 @@
+<footer class="footer">
+  <div class="footer__inner">
+    {% if metadata.copyright %}
+      <div class="copyright copyright--user">{{ metadata.copyright | safe }}</div>
+    {% else %}
+      {% include "partials/logo.njk" %}
+      <div class="copyright">
+        <span>&copy; {{ "" | currentYear }} Powered by <a href="https://www.11ty.dev" target="_blank" rel="noopener">Eleventy</a></span>
+        <span><a href="https://github.com/panr/hugo-theme-hello-friend" target="_blank" rel="noopener">Theme</a> made by <a href="https://github.com/panr" target="_blank" rel="noopener">panr</a></span>
+      </div>
+    {% endif %}
+  </div>
+</footer>
+
+<script src="/assets/js/menu.js" defer></script>
+<script src="/assets/js/prism.js" defer></script>
+<script src="/assets/js/theme.js" defer></script>

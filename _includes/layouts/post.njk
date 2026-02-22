@@ -1,0 +1,57 @@
+{% extends "layouts/base.njk" %}
+
+{% block head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ title | escape }}",
+  "datePublished": "{{ page.date | dateISO }}",
+  "dateModified": "{{ (updated or page.date) | dateISO }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ (author or metadata.author.name) | escape }}"
+  },
+  "mainEntityOfPage": "{{ page.url | absoluteUrl(metadata.url) }}",
+  "description": "{{ (description or metadata.description) | escape }}"
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<article class="post h-entry">
+  <h1 class="post-title p-name">{{ title }}</h1>
+  {% include "partials/postmeta.njk" %}
+
+  {% if tags %}
+    <span class="post-tags">
+      {% for tag in tags %}
+        <a class="p-category" href="/tags/{{ tag | slug }}/">#{{ tag }}</a>{% if not loop.last %}&nbsp;{% endif %}
+      {% endfor %}
+    </span>
+  {% endif %}
+
+  {% include "partials/postcover.njk" %}
+
+  <div class="post-content e-content">
+    {{ content | safe }}
+  </div>
+
+  {% if prevPost or nextPost %}
+    <div class="pagination">
+      <div class="pagination__title">
+        <span class="pagination__title-h">{{ metadata.readOtherPosts or "Read other posts" }}</span>
+        <hr />
+      </div>
+      <div class="pagination__buttons">
+        {% if nextPost %}
+          <span class="button previous"><a href="{{ nextPost.url }}"><span class="button__icon">&larr;</span><span class="button__text">{{ nextPost.data.title }}</span></a></span>
+        {% endif %}
+        {% if prevPost %}
+          <span class="button next"><a href="{{ prevPost.url }}"><span class="button__text">{{ prevPost.data.title }}</span><span class="button__icon">&rarr;</span></a></span>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+</article>
+{% endblock %}

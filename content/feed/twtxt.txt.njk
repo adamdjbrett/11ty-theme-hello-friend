@@ -1,0 +1,11 @@
+---
+permalink: /feed/twtxt.txt
+layout: null
+eleventyExcludeFromCollections: true
+---
+# twtxt feed for {{ metadata.title }}
+# url = {{ metadata.url }}/feed/twtxt.txt
+# generated = {{ collections.postsDesc[0].date | dateISO }}
+{% for post in collections.postsDesc %}
+{{ post.date | dateReadable("yyyy-LL-dd'T'HH:mm:ss'Z'") }}\t{{ post.data.title }} {{ post.url | absoluteUrl(metadata.url) }}
+{% endfor %}
